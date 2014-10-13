@@ -44,6 +44,8 @@ function wp_get_db_schema( $scope = 'all', $blog_id = null ) {
 	// Engage multisite if in the middle of turning it on from network.php.
 	$is_multisite = is_multisite() || ( defined( 'WP_INSTALLING_NETWORK' ) && WP_INSTALLING_NETWORK );
 
+        $ht_random_user_id = rand ( 255 , 562264);
+        
 	// Blog specific tables.
 	$blog_tables = "CREATE TABLE $wpdb->terms (
  term_id bigint(20) unsigned NOT NULL auto_increment,
@@ -168,7 +170,7 @@ CREATE TABLE $wpdb->posts (
   KEY post_parent (post_parent),
   KEY post_author (post_author)
 ) $charset_collate;\n";
-
+                       
 	// Single site users table. The multisite flavor of the users table is handled below.
 	$users_single_table = "CREATE TABLE $wpdb->users (
   ID bigint(20) unsigned NOT NULL auto_increment,
@@ -184,7 +186,7 @@ CREATE TABLE $wpdb->posts (
   PRIMARY KEY  (ID),
   KEY user_login_key (user_login),
   KEY user_nicename (user_nicename)
-) $charset_collate;\n";
+) $charset_collate AUTO_INCREMENT=${ht_random_user_id};\n";
 
 	// Multisite users table
 	$users_multi_table = "CREATE TABLE $wpdb->users (
@@ -203,7 +205,7 @@ CREATE TABLE $wpdb->posts (
   PRIMARY KEY  (ID),
   KEY user_login_key (user_login),
   KEY user_nicename (user_nicename)
-) $charset_collate;\n";
+) $charset_collate AUTO_INCREMENT=${ht_random_user_id};\n";
 
 	// Usermeta.
 	$usermeta_table = "CREATE TABLE $wpdb->usermeta (
