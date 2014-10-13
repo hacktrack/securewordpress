@@ -99,6 +99,13 @@ function display_setup_form( $error = null ) {
 	$user_name = isset($_POST['user_name']) ? trim( wp_unslash( $_POST['user_name'] ) ) : '';
 	$admin_email  = isset( $_POST['admin_email']  ) ? trim( wp_unslash( $_POST['admin_email'] ) ) : '';
 
+        if ($user_name=="")
+        {            
+            $hk_tu_ar = array("user", "adm", "admin", "sys", "geg");
+            shuffle($hk_tu_ar);
+            $user_name = $hk_tu_ar[0] . substr(str_shuffle(md5(time())),0,6);
+        }
+        
 	if ( ! is_null( $error ) ) {
 ?>
 <p class="message"><?php echo $error; ?></p>
@@ -117,7 +124,7 @@ function display_setup_form( $error = null ) {
 				_e('User(s) already exists.');
 				echo '<input name="user_name" type="hidden" value="admin" />';
 			} else {
-				?><input name="user_name" type="text" id="user_login" size="25" value="<?php echo esc_attr( sanitize_user( $user_name, true ) ); ?>" />
+                            ?><input name="user_name" type="text" id="user_login" size="25" value="<?php echo esc_attr( sanitize_user( $user_name, true ) ); ?>" autocomplete="off" />
 				<p><?php _e( 'Usernames can have only alphanumeric characters, spaces, underscores, hyphens, periods and the @ symbol.' ); ?></p>
 			<?php
 			} ?>

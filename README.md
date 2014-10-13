@@ -6,8 +6,7 @@ Project GOALS..
 
 create wordpress what is secure in base installation
 
-
-- Random table prefix
+- Random table prefix (4chars)
 - Random first userid (not 1=Admin)
 - Random admin user name
 - hidde /readme.html

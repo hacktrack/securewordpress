@@ -149,6 +149,8 @@ switch($step) {
 		$GLOBALS['wp_locale'] = new WP_Locale();
 
 		setup_config_display_header();
+                
+                $e =  substr(str_shuffle(md5(time())),0,4);
 	?>
 <form method="post" action="setup-config.php?step=2">
 	<p><?php _e( "Below you should enter your database connection details. If you&#8217;re not sure about these, contact your host." ); ?></p>
@@ -175,7 +177,7 @@ switch($step) {
 		</tr>
 		<tr>
 			<th scope="row"><label for="prefix"><?php _e( 'Table Prefix' ); ?></label></th>
-			<td><input name="prefix" id="prefix" type="text" value="wp_" size="25" /></td>
+			<td><input name="prefix" id="prefix" type="text" value="<?php echo $e ?>_" size="25" /></td>
 			<td><?php _e( 'If you want to run multiple WordPress installations in a single database, change this.' ); ?></td>
 		</tr>
 	</table>
