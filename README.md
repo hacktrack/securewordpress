@@ -2,7 +2,7 @@ securewordpress
 ===============
 
 
-Project GOALS.. 
+Project GOALS.. xx
 
 create wordpress what is secure in base installation
 
